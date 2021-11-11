@@ -27,7 +27,7 @@ Player.create = (newPlayer, result) => {
 };
 
 Player.findById = (id, result) => {
-    sql.query(`SELECT * FROM players WHERE id = ${id}`, (err, res) => {
+    sql.query(`SELECT * FROM players WHERE idplayer = ${id}`, (err, res) => {
         if(err){
             console.log("error: ", err);
             result(err, null);
@@ -77,9 +77,9 @@ Player.getAllSigned = result => {
     });
 };
 
-Players.updateById = (id, player, result) => {
+Player.updateById = (id, player, result) => {
     sql.query(
-        "UPDATE players SET name = ?, last_name = ?, free_agent = ? WHERE id = ?",
+        "UPDATE players SET name = ?, last_name = ?, free_agent = ? WHERE idplayer = ?",
         [player.name, player.last_name, player.free_agent, id],
         (err, res) => {
             if(err) {
@@ -101,7 +101,7 @@ Players.updateById = (id, player, result) => {
 };
 
 Player.remove = (id, result) => {
-    sql.query("DELETE FROM players WHERE id = ?", id, (err, res) => {
+    sql.query("DELETE FROM players WHERE idplayer = ?", id, (err, res) => {
         if(err){
             console.log("error: ", err);
             result(null, err);
